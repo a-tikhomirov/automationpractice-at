@@ -3,7 +3,7 @@ package ru.geekbrains.atikhomirov.automationpractice.at.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-//#center_column .alert
+
 public class RegistrationPage extends BaseActions {
     private static final By REGISTER_PAGE_HEADER = By.cssSelector(".page-heading");
 

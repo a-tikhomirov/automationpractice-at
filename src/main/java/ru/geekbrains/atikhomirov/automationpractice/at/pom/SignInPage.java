@@ -22,7 +22,7 @@ public class SignInPage extends BaseActions {
     }
 
     public void enterEmailAndGoToRegistration(String email) {
-        type(email.toString(), EMAIL_REGISTRATION);
+        type(email, EMAIL_REGISTRATION);
         click(GO_TO_REGISTRATION_BTN);
     }
 }

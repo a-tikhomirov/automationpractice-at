@@ -35,6 +35,7 @@ public class AccountDataGenerator {
     };
 
     private static final int MAX_STATE_ID = 53;
+    private static final int US_COUNTRY_ID = 21;
 
     private static final int CHAR_NUM_MIN = 48;
     private static final int CHAR_NUM_MAX = 57;
@@ -98,7 +99,7 @@ public class AccountDataGenerator {
                 getRandomString(3, CHAR_SYMBOL_MIN, CHAR_SYMBOL_MAX),
                 getRandomInt(1, MAX_STATE_ID),
                 getRandomString(5, CHAR_NUM_MIN, CHAR_NUM_MAX),
-                21,
+                US_COUNTRY_ID,
                 getRandomString(9, CHAR_NUM_MIN, CHAR_NUM_MAX),
                 getRandomString(3, CHAR_SYMBOL_MIN, CHAR_SYMBOL_MAX)
         );

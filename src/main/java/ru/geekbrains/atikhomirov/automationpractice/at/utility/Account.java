@@ -1,8 +1,5 @@
 package ru.geekbrains.atikhomirov.automationpractice.at.utility;
 
-import java.nio.file.Files;
-import java.util.Objects;
-
 public class Account {
     private String firstName;
     private String lastName;
