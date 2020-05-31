@@ -3,6 +3,7 @@ package ru.geekbrains.atikhomirov.automationpractice.at.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.geekbrains.atikhomirov.automationpractice.at.utility.Account;
 
 public class RegistrationPage extends BaseActions {
     private static final By REGISTER_PAGE_HEADER = By.cssSelector(".page-heading");
@@ -37,32 +38,20 @@ public class RegistrationPage extends BaseActions {
         return driver.findElement(REGISTER_PAGE_HEADER).getText();
     }
 
-    public void fillFormAndSubmit(String firstName,
-                                  String lastName,
-                                  String email,
-                                  String passwd,
-                                  String addrFirstName,
-                                  String addrLastName,
-                                  String address,
-                                  String city,
-                                  String stateId,
-                                  String zip,
-                                  String countryId,
-                                  String mobilePhone,
-                                  String addressAlias) {
-        type(firstName, FIRST_NAME_INPUT);
-        type(lastName, LAST_NAME_INPUT);
-        type(email, EMAIL_INPUT);
-        type(passwd, PASSWD_INPUT);
-        type(addrFirstName, ADDR_FIRST_NAME_INPUT);
-        type(addrLastName, ADDR_LAST_NAME_INPUT);
-        type(address, ADDR_INPUT);
-        type(city, CITY_INPUT);
-        select(stateId, STATE_SELECT);
-        type(zip, ZIP_INPUT);
-        select(countryId, COUNTRY_SELECT);
-        type(mobilePhone, PHONE_INPUT);
-        type(addressAlias, ADDR_ALIAS_INPUT);
+    public void fillFormAndSubmit(Account acc) {
+        type(acc.getFirstName(), FIRST_NAME_INPUT);
+        type(acc.getLastName(), LAST_NAME_INPUT);
+        type(acc.getEmail(), EMAIL_INPUT);
+        type(acc.getPassword(), PASSWD_INPUT);
+        type(acc.getAddrFirstName(), ADDR_FIRST_NAME_INPUT);
+        type(acc.getAddrLastName(), ADDR_LAST_NAME_INPUT);
+        type(acc.getAddress(), ADDR_INPUT);
+        type(acc.getCity(), CITY_INPUT);
+        select(acc.getStateId(), STATE_SELECT);
+        type(acc.getZip(), ZIP_INPUT);
+        select(acc.getCountryId(), COUNTRY_SELECT);
+        type(acc.getMobilePhone(), PHONE_INPUT);
+        type(acc.getAddressAlias(), ADDR_ALIAS_INPUT);
         click(REGISTER_BTN);
     }
 

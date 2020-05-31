@@ -1,10 +1,12 @@
 package ru.geekbrains.atikhomirov.automationpractice.at;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.geekbrains.atikhomirov.automationpractice.at.pom.BaseActions;
 import ru.geekbrains.atikhomirov.automationpractice.at.utility.Account;
 import ru.geekbrains.atikhomirov.automationpractice.at.utility.AccountDataGenerator;
 
@@ -21,24 +23,8 @@ public class RegistrationTests extends BaseTest {
     private void goToSignInPage() {
         mainPage.home();
         mainPage.goToSignIn();
-    }
-
-    private void fillRegFormAndSubmit(Account acc) {
-        registrationPage.fillFormAndSubmit(
-                acc.getFirstName(),
-                acc.getLastName(),
-                acc.getEmail(),
-                acc.getPassword(),
-                acc.getAddrFirstName(),
-                acc.getAddrLastName(),
-                acc.getAddress(),
-                acc.getCity(),
-                acc.getStateId(),
-                acc.getZip(),
-                acc.getCountryId(),
-                acc.getMobilePhone(),
-                acc.getAddressAlias()
-        );
+        assertTrue(signInPage.isPageHeaderPresent());
+        assertEquals("authentication", signInPage.getPageHeaderText().toLowerCase());
     }
 
     private static Stream<Account> createNewAccountTestDataSupplier() {
@@ -51,7 +37,9 @@ public class RegistrationTests extends BaseTest {
     @MethodSource("createNewAccountTestDataSupplier")
     public void createNewAccountTest(Account account) {
         signInPage.enterEmailAndGoToRegistration(account.getEmail());
-        fillRegFormAndSubmit(account);
+        assertTrue(registrationPage.isPageHeaderPresent());
+        assertEquals("create an account", registrationPage.getPageHeaderText().toLowerCase());
+        registrationPage.fillFormAndSubmit(account);
         assertTrue(accountPage.isPageHeaderPresent());
         assertEquals("my account", accountPage.getPageHeaderText().toLowerCase());
     }
@@ -81,7 +69,7 @@ public class RegistrationTests extends BaseTest {
     public void registrationFailTest(Account account, Account.Field fieldToBreak, String expectedAlert) {
         signInPage.enterEmailAndGoToRegistration(account.getEmail());
         account.setField(fieldToBreak, "");
-        fillRegFormAndSubmit(account);
+        registrationPage.fillFormAndSubmit(account);
         assertTrue(registrationPage.isAlertPresent());
         assertTrue(registrationPage.getAlertText().contains(expectedAlert));
     }
