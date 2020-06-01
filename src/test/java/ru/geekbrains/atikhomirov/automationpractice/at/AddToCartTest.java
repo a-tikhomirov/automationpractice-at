@@ -36,11 +36,10 @@ public class AddToCartTest extends BaseTest {
     }
 
     private static Stream<Arguments> addItemsAndCheckCartDataSupplier() {
-        String[] products = {"Faded Short Sleeve T-shirts", "Blouse", "Printed Dress"};
         return Stream.of(
-                Arguments.of(accounts.get(0), products),
-                Arguments.of(accounts.get(1), products),
-                Arguments.of(accounts.get(2), products)
+                Arguments.of(accounts.get(0), "Faded Short Sleeve T-shirts"),
+                Arguments.of(accounts.get(1), "Blouse"),
+                Arguments.of(accounts.get(2), "Printed Dress")
         );
     }
 
@@ -48,19 +47,15 @@ public class AddToCartTest extends BaseTest {
     @DisplayName("Order 2 - Checks: main page - Sign in - Add to cart - view cart")
     @ParameterizedTest(name = "{index} ==> {0} Adding to cart: {1}")
     @MethodSource("addItemsAndCheckCartDataSupplier")
-    public void addItemsAndCheckCart(Account account, String[] products) {
+    public void addItemsAndCheckCart(Account account, String product) {
         mainPage.home();
         mainPage.goToSignIn();
         signInPage.signIn(account.getEmail(), account.getPassword());
         accountPage.selectShoppingCategory(ShoppingCategory.WOMEN);
-        for (String product:products) {
-            shopPage.addProductToCart(product);
-            shopPage.continueShopping();
-        }
+        shopPage.addProductToCart(product);
+        shopPage.continueShopping();
         shopPage.viewCart();
-        for (String product:products) {
-            assertTrue(shoppingCart.isItemInCart(product));
-            assertEquals(1, shoppingCart.getItemQty(product));
-        }
+        assertTrue(shoppingCart.isItemInCart(product));
+        assertEquals(1, shoppingCart.getItemQty(product));
     }
 }
