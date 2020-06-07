@@ -21,17 +21,31 @@ public abstract class BaseTest extends MatcherAssert {
     protected ShopPage shopPage;
     protected ShoppingCart shoppingCart;
 
-    @Description("Setting up browser driver")
-    @BeforeMethod
+    private String browserType;
+
+    @BeforeClass
     @Parameters("browser")
-    public void setUpDriver(@Optional("chrome") String browser) {
-        switch (browser) {
+    public void getBrowserDriver(@Optional("chrome") String browser) {
+        browserType = browser;
+        switch (browserType) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driver.set(new ChromeDriver());
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
+                break;
+        }
+    }
+
+    @Description("Setting up browser driver")
+    @BeforeMethod
+    //@Parameters("browser")
+    public void setUpDriver() {
+        switch (browserType) {
+            case "chrome":
+                driver.set(new ChromeDriver());
+                break;
+            case "firefox":
                 driver.set(new FirefoxDriver());
                 break;
         }
