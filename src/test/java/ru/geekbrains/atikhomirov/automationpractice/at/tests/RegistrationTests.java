@@ -22,7 +22,7 @@ public class RegistrationTests extends BaseTest {
         accDataGenerator = new AccountDataGenerator(20);
     }
 
-    @Description("Main page - sign in with account data")
+    @Description("Main page - sign in page")
     @BeforeMethod
     private void goToSignInPage() {
         mainPage.home();
@@ -43,8 +43,8 @@ public class RegistrationTests extends BaseTest {
     public void createNewAccountTest(Account account) {
         signInPage.enterEmailAndGoToRegistration(account.getEmail());
         registrationPage.fillFormAndSubmit(account);
-        assertThat("Page header is presented", signInPage.isPageHeaderPresent(), equalTo(true));
-        assertThat("Page header text is correct", signInPage.getPageHeaderText(), equalToIgnoringCase("my account"));
+        assertThat("Page header is presented", accountPage.isPageHeaderPresent(), equalTo(true));
+        assertThat("Page header text is correct", accountPage.getPageHeaderText(), equalToIgnoringCase("my account"));
     }
 
     @DataProvider(name = "registrationFailDataSupplier")

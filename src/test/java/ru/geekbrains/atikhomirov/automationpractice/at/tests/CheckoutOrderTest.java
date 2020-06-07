@@ -32,7 +32,7 @@ public class CheckoutOrderTest extends BaseTest {
 
     @Description("Register account")
     @BeforeMethod
-    public void createAccount() {
+    public void registerAccount() {
         Account account = accountIterator.next();
         mainPage.home();
         mainPage.getHeader().signIn();

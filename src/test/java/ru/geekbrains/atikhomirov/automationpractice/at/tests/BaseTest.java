@@ -12,7 +12,7 @@ import ru.geekbrains.atikhomirov.automationpractice.at.pom.page.*;
 
 public abstract class BaseTest extends MatcherAssert {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    protected WebDriverWait wait;
+    protected static final ThreadLocal<WebDriverWait> wait = new ThreadLocal<>();
 
     protected MainPage mainPage;
     protected SignInPage signInPage;
@@ -36,13 +36,13 @@ public abstract class BaseTest extends MatcherAssert {
                 break;
         }
         driver.get().manage().window().maximize();
-        wait = new WebDriverWait(driver.get(), 6);
-        mainPage = new MainPage(driver.get(), wait);
-        signInPage = new SignInPage(driver.get(), wait);
-        registrationPage = new RegistrationPage(driver.get(), wait);
-        accountPage = new AccountPage(driver.get(), wait);
-        shopPage = new ShopPage(driver.get(), wait);
-        shoppingCart = new ShoppingCart(driver.get(), wait);
+        wait.set(new WebDriverWait(driver.get(), 5));
+        mainPage = new MainPage(driver.get(), wait.get());
+        signInPage = new SignInPage(driver.get(), wait.get());
+        registrationPage = new RegistrationPage(driver.get(), wait.get());
+        accountPage = new AccountPage(driver.get(), wait.get());
+        shopPage = new ShopPage(driver.get(), wait.get());
+        shoppingCart = new ShoppingCart(driver.get(), wait.get());
     }
 
     @Description("Closing browser driver")
