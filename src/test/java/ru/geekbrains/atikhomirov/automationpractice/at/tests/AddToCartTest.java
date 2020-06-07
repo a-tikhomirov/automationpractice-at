@@ -43,7 +43,8 @@ public class AddToCartTest extends BaseTest {
         new MainPage(getDriver(), getWait())
                 .home().getHeader().signIn()
                 .enterEmailAndGoToRegistration(acc.getEmail())
-                .fillFormAndSubmit(acc);
+                .fillFormAndSubmit(acc)
+                .waitForAccountPageLoaded(5);
     }
 
     @DataProvider(name = "addItemsAndCheckCartDataSupplier", parallel = true)

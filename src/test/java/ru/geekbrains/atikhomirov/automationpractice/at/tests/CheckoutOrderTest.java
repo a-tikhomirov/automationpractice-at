@@ -41,7 +41,8 @@ public class CheckoutOrderTest extends BaseTest {
                 .home()
                 .getHeader().signIn()
                 .enterEmailAndGoToRegistration(account.getEmail())
-                .fillFormAndSubmit(account));
+                .fillFormAndSubmit(account)
+                .waitForAccountPageLoaded(5));
     }
 
     @DataProvider(name = "addToCartAndCheckoutDataSupplier", parallel = true)
