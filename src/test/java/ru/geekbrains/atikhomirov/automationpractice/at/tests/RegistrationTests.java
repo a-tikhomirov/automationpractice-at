@@ -4,12 +4,10 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.*;
-import ru.geekbrains.atikhomirov.automationpractice.at.pom.common.ContentPage;
 import ru.geekbrains.atikhomirov.automationpractice.at.pom.page.AccountPage;
 import ru.geekbrains.atikhomirov.automationpractice.at.pom.page.MainPage;
 import ru.geekbrains.atikhomirov.automationpractice.at.pom.page.RegistrationPage;
 import ru.geekbrains.atikhomirov.automationpractice.at.pom.page.RegistrationPage.Alert;
-import ru.geekbrains.atikhomirov.automationpractice.at.pom.page.SignInPage;
 import ru.geekbrains.atikhomirov.automationpractice.at.utility.Account;
 import ru.geekbrains.atikhomirov.automationpractice.at.utility.AccountDataGenerator;
 

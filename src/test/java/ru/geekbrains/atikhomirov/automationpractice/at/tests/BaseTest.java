@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import ru.geekbrains.atikhomirov.automationpractice.at.pom.page.*;
 
 public abstract class BaseTest extends MatcherAssert {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -26,7 +25,7 @@ public abstract class BaseTest extends MatcherAssert {
     @Description("Setting up browser driver")
     @BeforeMethod
     @Parameters("browser")
-    public void setUpDriver(@Optional("firefox") String browser) {
+    public void setUpDriver(@Optional("chrome") String browser) {
         switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
