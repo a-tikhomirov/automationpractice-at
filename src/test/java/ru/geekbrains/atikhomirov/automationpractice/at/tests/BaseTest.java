@@ -26,7 +26,7 @@ public abstract class BaseTest extends MatcherAssert {
     @Description("Setting up browser driver")
     @BeforeMethod
     @Parameters("browser")
-    public void setUpDriver(@Optional("chrome") String browser) {
+    public void setUpDriver(@Optional("firefox") String browser) {
         switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();

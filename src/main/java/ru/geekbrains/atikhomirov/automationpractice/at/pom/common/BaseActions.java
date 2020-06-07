@@ -28,12 +28,8 @@ public abstract class BaseActions {
 
     public void select(String value, By by) {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
-        WebElement dropbox = driver.findElement(by);
-        wait.until((ExpectedCondition<Boolean>) driver -> {
-            Select select = new Select(dropbox);
-            return select.getOptions().size()>1;
-        });
-        Select select = new Select(dropbox);
+        wait.until((ExpectedCondition<Boolean>) driver -> new Select(driver.findElement(by)).getOptions().size() > 1);
+        Select select = new Select(driver.findElement(by));
         select.selectByValue(value);
     }
 
