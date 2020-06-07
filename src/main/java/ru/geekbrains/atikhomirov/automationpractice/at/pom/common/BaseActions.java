@@ -7,8 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public abstract class BaseActions {
     protected WebDriver driver;
@@ -17,6 +19,14 @@ public abstract class BaseActions {
     public BaseActions(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
+    }
+
+    public WebElement waitElement(int timeoutSec, int pollingMillis, Function<WebDriver, WebElement> f) {
+        Wait<WebDriver> fluentWait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(timeoutSec))
+                .pollingEvery(Duration.ofMillis(pollingMillis))
+                .ignoring(NoSuchElementException.class);
+        return fluentWait.until(f);
     }
 
     public void type(String text, By by) {
@@ -54,6 +64,7 @@ public abstract class BaseActions {
 
     public WebElement findElement(By listSelector, By subElement, String expectedValue) {
         List<Object> arrayList = new ArrayList<>();
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(listSelector, 0));
         for (WebElement webElement : driver.findElements(listSelector)) {
             String actualText = webElement.findElement(subElement).getText();
             arrayList.add(actualText);

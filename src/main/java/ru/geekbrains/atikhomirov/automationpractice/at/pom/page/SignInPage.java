@@ -17,6 +17,7 @@ public class SignInPage extends ContentPage {
         super(driver, wait);
     }
 
+    @Step("Go to registration page with email: {email}")
     public RegistrationPage enterEmailAndGoToRegistration(String email) {
         type(email, EMAIL_REGISTRATION);
         click(GO_TO_REGISTRATION_BTN);

@@ -41,7 +41,8 @@ public class RegistrationTests extends BaseTest {
                 .home()
                 .getHeader().signIn()
                 .enterEmailAndGoToRegistration(account.getEmail())
-                .fillFormAndSubmit(account);
+                .fillFormAndSubmit(account)
+                .waitForAccountPageLoaded(5);
         assertThat("Page header is presented", accountPage.isPageHeaderPresent(), equalTo(true));
         assertThat("Page header text is correct", accountPage.getPageHeaderText(), equalToIgnoringCase("my account"));
     }
