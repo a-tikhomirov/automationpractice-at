@@ -21,13 +21,13 @@ public abstract class BaseTest extends MatcherAssert {
         return wait.get();
     }
 
-    private String browserType;
+    private String browser;
 
     @BeforeClass
     @Parameters("browser")
     public void getBrowserDriver(@Optional("chrome") String browser) {
-        browserType = browser;
-        switch (browserType) {
+        this.browser = browser;
+        switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 break;
@@ -41,7 +41,7 @@ public abstract class BaseTest extends MatcherAssert {
     @BeforeMethod
     //@Parameters("browser")
     public void setUpDriver() {
-        switch (browserType) {
+        switch (browser) {
             case "chrome":
                 driver.set(new ChromeDriver());
                 break;
