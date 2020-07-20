@@ -1,4 +1,3 @@
-automationpractice.com - Java + Maven + Junit + Selenium practice
 # Проект автоматизации тестирования сайта automationpractice.com
 
 Проект был сделан в рамках курса "Java для тестировщиков".  
